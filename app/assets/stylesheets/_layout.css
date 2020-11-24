@@ -1,0 +1,19 @@
+html {
+    scroll-behavior: smooth;
+  }
+  $sizeamounts: (0, 5, 10, 12, 14, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100);
+  
+  @each $size in $sizeamounts {
+    .f-#{$size} {
+      font-size: #{$size}px !important;
+    }
+  }
+  
+  $thickness: (0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1800);
+  @each $thick in $thickness {
+  
+    .th-#{$thick} {
+      font-weight: #{$thick} !important;
+    }
+  
+  }

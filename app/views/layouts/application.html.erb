@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CoolBlog</title>
+    <title>Quickstart</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('image-name.png') %>
   </head>
 
   <body>
-  <%= render 'shared/navbar' %>
-  <div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  </div>
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/notifications' %>
   <section class="section">
     <%= yield %>
   </section>
+  <section class="section">
+    <%= render 'shared/footer' %>
+  </section>
+    <!--mobile responsive navbar. Uncomment for use.-->
+    <!--
+    <%= render 'shared/mobile_navbar' %>
+    -->
   </body>
 </html>

@@ -1,4 +1,4 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar mx-2" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
       <h1 class="title">Quickstart</h1>
@@ -13,6 +13,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
+    <!--this is the format for navbar items-->
     <!--
       <a class="navbar-item">
         Home
@@ -46,7 +47,7 @@
       <div class="navbar-item">
         <div class="buttons">
         <% if current_user %> 
-            <%= link_to "Sign Out", destroy_user_registration_path, method: :delete, class: "button is-primary is-bold has-text-weight-bold" %>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "button is-primary is-bold has-text-weight-bold" %>
         <% else %>
             <%= link_to "Sign In", new_user_session_path, class: "button is-light" %>
             <%= link_to  "Sign Up", new_user_registration_path, class: "button is-primary has-text-weight-bold" %>
