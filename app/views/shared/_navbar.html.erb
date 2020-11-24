@@ -46,7 +46,7 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-        <% if current_user %> 
+        <% if user_signed_in? %> 
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "button is-primary is-bold has-text-weight-bold" %>
         <% else %>
             <%= link_to "Sign In", new_user_session_path, class: "button is-light" %>
