@@ -1,0 +1,20 @@
+<div class="columns">
+  <div class="column is-3"></div>
+  <div class="column is-6">
+    <div class="card py-4 px-5 mb-3">
+      <h1 class="title">Home</h1>
+      <%= render "posts/form", post: Post.new %>
+    </div>
+    <div class="card p-5">
+      <% @posts.each do |post| %>
+        <div>
+          <div><strong><%= post.user.username %></strong></div>
+          <div class="mt-1">
+            <%= post.body%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="column is-3"></div>
+</div>

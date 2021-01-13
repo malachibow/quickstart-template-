@@ -10,10 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_134452) do
+ActiveRecord::Schema.define(version: 2021_01_13_220335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "first_user_id", null: false
+    t.bigint "second_user_id", null: false
+    t.boolean "first_user_read"
+    t.boolean "second_user_read"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["first_user_id"], name: "index_conversations_on_first_user_id"
+    t.index ["second_user_id"], name: "index_conversations_on_second_user_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "first_user_id", null: false
+    t.bigint "second_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "status"
+    t.index ["first_user_id"], name: "index_matches_on_first_user_id"
+    t.index ["second_user_id"], name: "index_matches_on_second_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "content"
+    t.bigint "conversation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.boolean "private", default: true
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +63,22 @@ ActiveRecord::Schema.define(version: 2020_11_24_134452) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "bio"
+    t.integer "age"
+    t.integer "gender"
+    t.integer "orientation"
+    t.string "image"
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "conversations", "users", column: "first_user_id"
+  add_foreign_key "conversations", "users", column: "second_user_id"
+  add_foreign_key "matches", "users", column: "first_user_id"
+  add_foreign_key "matches", "users", column: "second_user_id"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
+  add_foreign_key "posts", "users"
 end
