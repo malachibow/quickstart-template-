@@ -1,9 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="columns">
+  <div class="column is-3"></div>
+  <div class="column is-6">
+<%= link_to 'Edit |', edit_post_path(@post) unless @post.user_id == current_user.id %>
+<%= link_to posts_path do %>
+  <i class="material-icons title is-1 has-text-primary">chevron_left</i>
+<% end %>
+<div class="card p-5">
+        <%= render "comments/form", comment: Comment.new, post_id: @post.id%>
+        <br>
+        <% @comments.each do |comment| %>
+          <div class="is-flex">
+            <div class="mb-2"> <strong><%= comment.user.username%></strong> <%= comment.body%></div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+  <div class="column is-3"></div>
+</div>

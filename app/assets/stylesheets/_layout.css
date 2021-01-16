@@ -17,3 +17,39 @@ html {
     }
   
   }
+  /*favorite button*/
+  .favme {
+    display:block;
+    font-size: ms(2);
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    box-shadow: none;
+    transition: all .2s ease;
+    color: #CBCDCE;
+    margin: 0;
+    
+    &.active {
+      color: #DC3232;
+    }
+    &:hover {
+      animation: favme-hover .3s infinite alternate;
+    }
+    &.is_animating {
+      animation: favme-anime .3s;
+    }
+  }
+
+  /*comment button*/
+  .comment {
+    display:block;
+    font-size: ms(2);
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    color: #CBCDCE;
+    
+    &:hover {
+      animation: favme-hover .3s infinite alternate;
+    }
+  }
