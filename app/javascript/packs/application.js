@@ -46,6 +46,13 @@ document.addEventListener("turbolinks:load", function() {
     $(".favme").on('animationend', function(){
     $(this).toggleClass('is_animating');
     });
+
+    /*sidebar*/
+    $(document).ready(function() {
+        $('#sidebar-btn').on('click', function() {
+          $('#sidebar').toggleClass('visible');
+        });
+      });
 })
 
 

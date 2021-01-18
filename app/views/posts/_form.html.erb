@@ -1,18 +1,15 @@
 <%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field">
-    <%= form.text_area :body, class: "textarea is-primary", rows: "2", placeholder: "Have you guys checked out John 12? ITS SO AMAZING..." %>
+    <label for="" class="label">Content</label>
+    <%= form.text_area :body, class: "textarea", rows: "2", placeholder: "Have you guys checked out John 12? ITS SO AMAZING..." %>
+  </div>
+  <div class="field">
+    <label for="" class="label">Post to a Group</label>
+    <div class="control is-expanded">
+      <div class="select">
+        <%= form.select(:group_id, options_for_select(Group.all_for_user(current_user).map { |p| [(p.name), p.id]}), {:include_blank => 'private'}) %>
+      </div>
+    </div>
   </div>
 
   <div class="actions">

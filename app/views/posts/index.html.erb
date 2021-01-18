@@ -1,15 +1,22 @@
 <div class="columns">
-  <div class="column is-3"></div>
+  <div class="column is-3">
+  </div>
   <div class="column is-6">
     <div class="is-flex is-justify-content-space-between">
-      <h1 class="title">Home</h1>
+      <div>
+        <% if params[:group].blank? %>
+          <h1 class="title mb-5">Home</h1>
+        <% else %>
+          <h1 class="title mb-0"><%= params[:group] %></h1>
+          <%= link_to "Go to group page", @group %>
+        <% end %>
+      </div>
       <button class="button toggle-modal" aria-control="new_post">New Post</button>
     </div>
     <div class="modal" id="new_post">
       <div class="modal-background toggle-modal" aria-control="new_post"></div>
       <div class="modal-content">
         <div class="box">
-          <p class="title is-4">New Post</p>
           <%= render "posts/form", post: Post.new %>
         </div>
       </div>
@@ -23,7 +30,7 @@
           </div>
           <div class="mt-1">
             <%= post.body%>
-            <div class="flex">
+            <div class="flex mt-5">
               <%= link_to favorite_path(post.id), method: :post, remote: :true do %>
                 <i class="material-icons favme <%if Favorite.exists?(user_id: current_user.id, post_id: post.id)%> active <%end%>">favorite</i>
               <% end %>
@@ -49,7 +56,16 @@
         </div>
         <hr>
       <% end %>
+      <%== pagy_bulma_nav(@pagy) %>
+      <% if @posts.blank? %>
+        <center>
+          <h2 class="title is-4">Uh oh! There are no posts to show.</h2>
+          <p class="subtitle">You can add groups on the left </p>
+        </center>
+        <%= image_tag 'woah.png' %>
+      <% end %>
     </div>
   </div>
-  <div class="column is-3"></div>
+  <div class="column is-3">
+  </div>
 </div>

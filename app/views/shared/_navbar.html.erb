@@ -1,7 +1,7 @@
 <nav class="navbar mx-2 is-hidden-mobile" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <h1 class="title">Bible Group</h1>
+      <h1 class="title">Meek&Lowly</h1>
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -14,6 +14,9 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <%= link_to 'Home', posts_path, class:"navbar-item" %>
+      <%= link_to 'Explore', explore_path, class:"navbar-item" %>
+      <%= link_to 'Notifications', notifications_path, class:"navbar-item" %>
+      <%= link_to 'Profile', profile_path(current_user.id), class:"navbar-item" %>
     <!--this is the format for navbar items-->
     <!--
 

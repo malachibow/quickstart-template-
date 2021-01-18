@@ -53,3 +53,20 @@ html {
       animation: favme-hover .3s infinite alternate;
     }
   }
+
+  /*sidebar*/
+  #sidebar {
+    width: 300px;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: -300px;
+    transition: left 0.5s ease;
+  }
+  
+  #sidebar.visible {
+    left: 0px;
+    transition: left 0.7s ease;
+  }
+  
+  

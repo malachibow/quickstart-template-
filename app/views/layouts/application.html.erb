@@ -17,7 +17,7 @@
     <%= yield %>
   </section>
   <section class="section">
-    <%= render 'shared/footer' %>
+    <%= render 'shared/footer' unless !current_page?('/')%>
   </section>
     <%= render 'shared/mobile_navbar' %>
   </body>

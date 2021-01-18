@@ -1,0 +1,25 @@
+<aside class="menu is-hidden-mobile">
+    <div class="menu-label">
+        Groups
+    </div>
+  <ul class="menu-list">
+        <li><a href="/posts" class="<% if params[:group].blank? %> is-active <%end%>">all</a></li>
+    <% Group.all_for_user(current_user).each do |group| %>
+        <li><a href="/posts/?group=<%= group.name %>" class="<% if params[:group] == group.name %> is-active <%end%>"><%= group.name.downcase %></a></li>
+    <% end %>
+  </ul>
+  <button class="button is-primary is-fullwidth toggle-modal mt-3" aria-control="add_new_group">+ Add Group</button>
+    <div class="modal" id="add_new_group">
+      <div class="modal-background toggle-modal" aria-control="add_new_group"></div>
+      <div class="modal-content">
+        <div class="box">
+          <p class="title is-4">Add New Group</p>
+            <%= render 'groups/search_form'%>
+            <center class="my-5"><strong>---- OR ----</strong></center>
+            <%= link_to 'Create New Group', new_group_path, class: "button is-fullwidth is-primary" %>
+        </div>
+      </div>
+      <button class="modal-close is-large toggle-modal" aria-control="add_new_group"></button>
+    </div>
+</aside>
+

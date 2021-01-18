@@ -5,7 +5,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(user_id: current_user.id)
+    @group = Group.find_by(name: params[:group])
+    if @group && GroupPermission.exists?(user_id: current_user.id, group_id: @group.id)
+      @pagy, @posts = pagy(Post.where(group_id: @group.id))
+    else
+      @pagy, @posts = pagy(Post.where(group_id: Group.all_for_user(current_user)))
+    end
   end
 
   # GET /posts/1
@@ -82,6 +87,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:body)
+      params.require(:post).permit(:body, :group_id)
     end
 end
